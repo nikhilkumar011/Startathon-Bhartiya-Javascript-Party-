@@ -1,6 +1,6 @@
 path: C:/Users/LENOVO/Desktop/Final_hackathon
-train: train/images  # Changed from Color_Images
-val: val/images      # Changed from Color_Images
+train: train/images  
+val: val/images     
 
 names:
   0: Trees
@@ -12,4 +12,5 @@ names:
   6: Logs
   7: Rocks
   8: Landscape
+
   9: Sky
