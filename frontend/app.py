@@ -9,7 +9,7 @@ import numpy as np
 from PIL import Image
 
 
-MODEL_PATH = os.getenv("MODEL_PATH", "best2.pt")
+MODEL_PATH = os.getenv("MODEL_PATH", "best.pt")
 DEVICE = "cuda" if os.environ.get("USE_CUDA") == "1" else "cpu"
 
 app = Flask(__name__)
