@@ -8,24 +8,16 @@ import cv2
 import numpy as np
 from PIL import Image
 
-# ==============================
-# CONFIG
-# ==============================
+
 MODEL_PATH = os.getenv("MODEL_PATH", "best2.pt")
 DEVICE = "cuda" if os.environ.get("USE_CUDA") == "1" else "cpu"
 
-# ==============================
-# APP SETUP
-# ==============================
 app = Flask(__name__)
 CORS(app)
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# ==============================
-# LOAD MODEL (Ultralytics)
-# ==============================
 if not os.path.exists(MODEL_PATH):
     raise FileNotFoundError(f"Model not found: {MODEL_PATH}")
 
@@ -33,9 +25,6 @@ logger.info(f"Loading YOLO model from {MODEL_PATH}")
 model = YOLO(MODEL_PATH)
 logger.info("Model loaded successfully!")
 
-# ==============================
-# ROUTES
-# ==============================
 
 @app.route("/", methods=["GET"])
 def home():
