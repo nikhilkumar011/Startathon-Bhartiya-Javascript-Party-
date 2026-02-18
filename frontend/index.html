@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Desert Segmentation Demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="min-h-screen bg-gradient-to-br from-gray-500 to-gray-700 flex items-center justify-center p-6">
+
+  <div class="bg-white/10 backdrop-blur-lg p-8 md:p-12 rounded-3xl shadow-2xl w-full max-w-5xl">
+
+    <!-- Title -->
+    <h1 class="text-3xl md:text-4xl font-bold text-white text-center mb-8">
+      Desert Semantic Segmentation
+    </h1>
+
+    <!-- Upload Section -->
+    <div class="flex flex-col md:flex-row items-center justify-center gap-4 mb-10">
+
+      <input 
+        type="file" 
+        id="imageInput"
+        accept="image/*"
+        class="w-full md:w-auto bg-white text-gray-700 px-4 py-2 rounded-lg shadow cursor-pointer
+               file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0
+               file:text-white file:bg-cyan-600 hover:file:bg-cyan-700 transition"
+      >
+
+      <button 
+        onclick="uploadImage()"
+        class="w-full md:w-auto bg-gradient-to-r from-orange-500 to-red-500 
+               hover:from-orange-600 hover:to-red-600 
+               text-white font-semibold px-6 py-2 rounded-lg shadow-lg 
+               transition duration-300 transform hover:scale-105">
+        Segment Image
+      </button>
+
+    </div>
+
+    <!-- Loading -->
+    <div id="loading" class="hidden text-center text-white mb-6">
+      Processing Image...
+    </div>
+
+    <!-- Results Section -->
+    <div>
+
+      <h2 class="text-white text-center font-semibold text-xl md:text-2xl mb-6">
+        Results
+      </h2>
+
+      <div class="flex flex-col md:flex-row items-center justify-center gap-8">
+
+        <!-- Original -->
+        <div class="text-center">
+          <p class="text-white mb-2 font-medium">Original</p>
+          <img 
+            id="originalImg"
+            src=""
+            class="w-100 md:w-72 rounded-xl shadow-lg border border-white/30"
+          >
+        </div>
+
+        <!-- Segmented -->
+        <div class="text-center">
+          <p class="text-white mb-2 font-medium">Segmented</p>
+          <img 
+            id="resultImg"
+            src=""
+            class="w-80 md:w-72 rounded-xl shadow-lg border border-white/30"
+          >
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+<script>
+
+document.getElementById('imageInput').addEventListener('change', function () {
+  if (this.files && this.files[0]) {
+    const url = URL.createObjectURL(this.files[0]);
+    document.getElementById('originalImg').src = url;
+  }
+});
+
+async function uploadImage() {
+
+  const input = document.getElementById('imageInput');
+  const loading = document.getElementById('loading');
+
+  if (!input.files.length) {
+    alert("Please select an image!");
+    return;
+  }
+
+  const file = input.files[0];
+  const formData = new FormData();
+  formData.append("image", file);
+
+  loading.classList.remove("hidden");
+
+  try {
+    const response = await fetch('http://127.0.0.1:5000/predict', {
+      method: 'POST',
+      body: formData
+    });
+
+    if (!response.ok) {
+      throw new Error("Prediction failed");
+    }
+
+    const blob = await response.blob();
+    const url = URL.createObjectURL(blob);
+    document.getElementById('resultImg').src = url;
+
+  } catch (error) {
+    alert("Error: " + error.message);
+  }
+
+  loading.classList.add("hidden");
+}
+
+</script>
+
+</body>
+</html>
