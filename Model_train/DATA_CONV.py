@@ -37,7 +37,7 @@ def convert_mask_to_yolo(mask_path, output_path):
             poly[:, 0] /= w  
             poly[:, 1] /= h  
             
-            # Create the line: "class_id x1 y1 x2 y2 ..."
+          
             line = f"{class_id} " + " ".join([f"{coord[0]:.6f} {coord[1]:.6f}" for coord in poly])
             yolo_lines.append(line)
 
@@ -46,8 +46,6 @@ def convert_mask_to_yolo(mask_path, output_path):
         with open(output_path, 'w') as f:
             f.write("\n".join(yolo_lines))
 
-# 2. Run conversion for both Train and Val folders
-# Note: It looks for 'Segmentation' and creates 'labels'
 project_path = "C:/Users/LENOVO/Desktop/Final_hackathon"
 
 for split in ['train', 'val']:
@@ -67,4 +65,5 @@ for split in ['train', 'val']:
         convert_mask_to_yolo(
             os.path.join(mask_dir, filename),
             os.path.join(label_dir, filename.replace('.png', '.txt'))
+
         )
