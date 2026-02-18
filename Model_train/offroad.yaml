@@ -1,0 +1,15 @@
+path: C:/Users/LENOVO/Desktop/Final_hackathon
+train: train/images  # Changed from Color_Images
+val: val/images      # Changed from Color_Images
+
+names:
+  0: Trees
+  1: Lush Bushes
+  2: Dry Grass
+  3: Dry Bushes
+  4: Ground Clutter
+  5: Flowers
+  6: Logs
+  7: Rocks
+  8: Landscape
+  9: Sky
