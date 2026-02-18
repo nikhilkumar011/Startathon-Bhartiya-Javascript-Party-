@@ -1,0 +1,33 @@
+Instructions to run this :-
+
+YOUR PROJECT FOLDER:
+
+C:\Users\ENTER_YOUR_USERNAME_HERE\Desktop\startathon_project_Bharatiya_javascript_party\frontend
+
+1. Install Python libraries:
+   & "C:/Users/ENTER_YOUR_USERNAME_HERE/AppData/Local/Programs/Python/Python310/python.exe" -m pip install flask flask-cors ultralytics opencv-python numpy pillow
+
+2. Install Website libraries:
+   cd "C:\Users\ENTER_YOUR_USERNAME_HERE\Desktop\startathon_project_Bharatiya_javascript_party\frontend"
+   npm install
+
+3. CHECK: Is 'best.pt' inside the folder above? If not, copy it there now.
+
+
+Open a PowerShell window and run this single command:
+
+& "C:/Users/ENTER_YOUR_USERNAME_HERE/AppData/Local/Programs/Python/Python310/python.exe" "C:\Users\ENTER_YOUR_USERNAME_HERE\Desktop\startathon_project_Bharatiya_javascript_party\frontend\app.py"
+
+dont close the window as it will close the frontend and backend
+
+Open a NEW PowerShell window and run these two lines:
+
+cd "C:\Users\ENTER_YOUR_USERNAME_HERE\Desktop\startathon_project_Bharatiya_javascript_party\frontend"
+npm start
+browser will open itself
+
+for demo:-
+
+1. Go to http://localhost:3000
+2. Upload a photo of dirt/rocks/grass.
+3. Click "Analyze" and watch the AI paint the terrain!
