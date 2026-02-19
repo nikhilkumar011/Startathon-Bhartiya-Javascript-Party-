@@ -43,7 +43,7 @@ Hardware: Trained on NVIDIA RTX 4050 (6GB VRAM) and Google Colab T4.
 
 Hyperparameters:
 
-Epochs: 50
+Epochs: 25
 
 Batch Size: 16
 
@@ -65,13 +65,13 @@ Frontend: A simple HTML and Tailwind CSS dashboard allows users (or remote opera
 
 Our model achieved the following performance on the validation set:
 
-mAP@50 (Mean Average Precision): 0.382
+mAP@50 (Mean Average Precision): 0.4
 
-Interpretation: The model successfully detects objects 92% of the time.
+Interpretation: The model successfully detects objects 40% of the time.
 
-mAP@50-95: 0.2
+mAP@50-95: 0.22
 
-Interpretation: The precision of the mask boundaries (exact shape of rocks/bushes) is 65%, which is competitive for the Nano model size.
+Interpretation: The precision of the mask boundaries (exact shape of rocks/bushes) is 22%, which is competitive for the Nano model size.
 
 ### 5.2 Visual Analysis
 
@@ -84,6 +84,7 @@ We successfully built an end-to-end pipeline for off-road terrain segmentation. 
 Future Work 1: Deploy the model onto an NVIDIA Jetson Nano for live field testing.
 
 Future Work 2: Integrate depth estimation (Stereo Vision) to determine the height of the segmented "Rocks" to differentiate between small pebbles (drivable) and large boulders (obstacles).
+
 
 
 
